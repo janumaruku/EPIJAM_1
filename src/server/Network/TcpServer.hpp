@@ -15,26 +15,27 @@
 
 using asio::ip::tcp;
 
-class TcpServer
-{
+class TcpServer {
 public:
-    TcpServer(asio::io_context &io, short port) : io_const(io),
-                                                  accept(io, tcp::endpoint(tcp::v4(), port))
+    TcpServer(asio::io_context& io, const short port) : io_const(io),
+        accept(io, tcp::endpoint(
+            tcp::v4(),
+            port))
     {
         accept_connexion();
     }
 
-protected:
 private:
-    asio::io_context &io_const;
+    asio::io_context& io_const;
     tcp::acceptor accept;
 
     void accept_connexion();
+
     void read_connexion(std::shared_ptr<tcp::socket> sock);
 
     void write_connexion(std::shared_ptr<tcp::socket> socket,
-                         std::shared_ptr<std::array<char, 1024>> buffer,
-                         std::size_t bytes);
+        std::shared_ptr<std::array<char, 1024>> buffer,
+        std::size_t bytes);
 };
 
 #endif
