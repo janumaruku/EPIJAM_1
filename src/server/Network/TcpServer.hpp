@@ -31,10 +31,10 @@ private:
 
     void accept_connexion();
 
-    void read_connexion(std::shared_ptr<tcp::socket> sock);
+    void read_connexion(const std::shared_ptr<tcp::socket>& sock);
 
-    void write_connexion(std::shared_ptr<tcp::socket> socket,
-        std::shared_ptr<std::array<char, 1024>> buffer,
+    void write_connexion(const std::shared_ptr<tcp::socket>& socket,
+        const std::shared_ptr<std::array<char, 1024>>& buffer,
         std::size_t bytes);
 };
 
