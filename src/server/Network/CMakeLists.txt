@@ -1,5 +1,7 @@
 add_library(tcp_server OBJECT TcpServer.cpp
-        TcpServer.hpp)
+        TcpServer.hpp
+        ClientSession.cpp
+        ClientSession.hpp)
 
 target_include_directories(tcp_server PUBLIC .)
 

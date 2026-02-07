@@ -6,66 +6,36 @@
 */
 
 #include "TcpServer.hpp"
+#include <iostream>
 
-void TcpServer::accept_connexion()
+TcpServer::TcpServer(asio::io_context& io, const short port)
+    : _acceptor(io, tcp::endpoint(tcp::v4(), port))
 {
-    auto socket = std::make_shared<asio::ip::tcp::socket>(io_const);
-    accept.async_accept(*socket, [this, socket](const asio::error_code& error)
-    {
-        if (!error) {
-            std::cout << "handle new connexion\n";
-            read_connexion(socket);
-        } else {
-            std::cerr << "Error in new connection acceptation: " << error.message() <<
-                std::endl;
-        }
-        accept_connexion();
-    });
+    std::cout << "[SERVER] Listening on port " << port << std::endl;
+    accept();
 }
 
-void TcpServer::read_connexion(const std::shared_ptr<tcp::socket>& sock)
+void TcpServer::accept()
 {
-    auto buffer = std::make_shared<std::array<char, 1024>>();
+    _acceptor.async_accept(
+        [this](const asio::error_code& ec, tcp::socket socket) {
+            if (!ec) {
+                const auto endpoint = socket.remote_endpoint();
 
-    sock->async_read_some(asio::buffer(*buffer),
-        [this, sock, buffer](const asio::error_code& error, const std::size_t bytes)
-        {
-            if (!error) {
-                std::cout << "Message reçu: " << std::string(buffer->data(), bytes);
-                write_connexion(sock, buffer, bytes);
+                std::cout << "[SERVER] New client connected from "
+                          << endpoint.address().to_string()
+                          << ":" << endpoint.port()
+                          << std::endl;
+
+                const auto client = std::make_shared<ClientSession>(std::move(socket));
+                _clients.push_back(client);
+                client->start();
             } else {
-                std::cerr << "Error in reading: " << error.message() << std::endl;
+                std::cerr << "[SERVER] Accept error: "
+                          << ec.message() << std::endl;
             }
+
+            accept();
         }
     );
-}
-
-void TcpServer::write_connexion(const std::shared_ptr<tcp::socket>& socket,
-    const std::shared_ptr<std::array<char, 1024>>& buffer,
-    const std::size_t bytes)
-{
-    auto response = std::make_shared<std::string>(
-        "Message envoyer: " + std::string(buffer->data(), bytes));
-
-    asio::async_write(*socket, asio::buffer(*response),
-        [this, socket, response](const asio::error_code& error, std::size_t)
-        {
-            if (!error) {
-                read_connexion(socket);
-            } else {
-                std::cerr << "Erreur d'écriture: " << error.message() << std::endl;
-            }
-        }
-    );
-}
-
-int main()
-{
-    try {
-        asio::io_context io_context;
-        TcpServer server(io_context, 8080);
-        io_context.run();
-    } catch (std::exception& e) {
-        std::cerr << "Exception: " << e.what() << std::endl;
-    }
 }
