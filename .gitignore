@@ -36,8 +36,8 @@
 *.exe
 *.out
 *.app
-server
-client
+./server
+./client
 
 # debug information files
 *.dwo
