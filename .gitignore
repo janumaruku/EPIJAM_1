@@ -41,3 +41,5 @@ client
 
 # debug information files
 *.dwo
+build/
+ray_client
