@@ -33,6 +33,10 @@
 *.lib
 
 # Executables
+*.Makefile
+*.cmake
+*.yaml
+*.marks
 *.exe
 *.out
 *.app
@@ -40,6 +44,7 @@
 ./client
 
 # debug information files
+CMafeFiles/
 *.dwo
 build/
 ray_client
