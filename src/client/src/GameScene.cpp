@@ -11,7 +11,7 @@ GameScene::GameScene(int width, int height)
     : parallax(width, height),
       map("maps/map.txt", 32.0f),
       player("assets/individual_sheets/player_sheet.png", 102, 102),
-      playerPos{200.f, 800.f},
+      playerPos{200.f, 850.f},
       playerVelocityY(0.0f),
       facingRight(true),
       isOnGround(true),
@@ -149,7 +149,7 @@ void GameScene::drawHUD()
 {
     DrawRectangle(10, 10, 350, 120, Fade(BLACK, 0.8f));
     
-    DrawText(TextFormat("COINS: %d", coinsCollected), 20, 20, 24, YELLOW);
+    DrawText(TextFormat("Tomato: %d", coinsCollected), 20, 20, 24, YELLOW);
     
     DrawText("HEALTH:", 20, 55, 20, WHITE);
     for (int i = 0; i < maxHealth; i++) {
@@ -191,7 +191,7 @@ void GameScene::drawGameOver()
 {
     DrawRectangle(0, 0, screenWidth, screenHeight, Fade(BLACK, 0.7f));
     
-    DrawText("GAME OVER U DIED THE VILLAGE CAN NOT BE SAVED :(", screenWidth/2 + 500, screenHeight/2 - 100, 80, RED);
+    DrawText("GAME OVER U :(", screenWidth/2 + 500, screenHeight/2 - 100, 80, RED);
     
     DrawRectangle(screenWidth/2 - 250, screenHeight/2, 500, 200, Fade(BLACK, 0.9f));
     DrawText(TextFormat("Coins Collected: %d", coinsCollected), 

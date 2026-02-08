@@ -14,7 +14,7 @@ GameEngine::GameEngine()
     InitWindow(1980, 1034, "game");
     SetTargetFPS(60);
 
-    currentScene = new GameScene(1980, 1034);
+    currentScene = new GameScene(1920, 1080);
 }
 
 GameEngine::~GameEngine()
@@ -35,7 +35,7 @@ void GameEngine::run()
         BeginDrawing();
         ClearBackground({135, 206, 235, 255});
         draw();
-        DrawFPS(10, 10);
+        // DrawFPS(10, 10);
         EndDrawing();
     }
 }

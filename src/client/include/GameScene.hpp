@@ -48,7 +48,7 @@ private:
     int screenHeight;
     
     const float gravity = 1200.0f;
-    const float jumpForce = -500.0f;     
+    const float jumpForce = -750.0f;     
     const float groundLevel = 906.0f; 
     const float INVINCIBILITY_DURATION = 2.0f;  
     const float HIT_ANIMATION_DURATION = 0.3f;
