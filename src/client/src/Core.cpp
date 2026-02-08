@@ -11,11 +11,11 @@ ClientApp::ClientApp(int port)
 
 void ClientApp::run()
 {
-    std::thread networkThread([this]() {
-        io.run();
-    });
+    std::thread networkThread([this]() { io.run(); });
 
-    engine.run();
-
-    networkThread.join();
+    engine.run(); 
+    network.stop();       
+    io.stop();           
+    networkThread.join(); 
+    
 }

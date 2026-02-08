@@ -19,6 +19,7 @@ public:
     TcpClient(asio::io_context& io, const std::string& host, short port);
 
     void send_message(const std::string& msg);
+    void stop();
 
 private:
     void start_read();

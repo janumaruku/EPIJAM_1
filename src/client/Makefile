@@ -154,6 +154,30 @@ src/Core.cpp.s:
 	cd /home/oceane/Epitech/TEK3/hackaton/Game_Jam/EPIJAM_1 && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/ray_client.dir/build.make src/client/CMakeFiles/ray_client.dir/src/Core.cpp.s
 .PHONY : src/Core.cpp.s
 
+src/CountdownTimer.o: src/CountdownTimer.cpp.o
+.PHONY : src/CountdownTimer.o
+
+# target to build an object file
+src/CountdownTimer.cpp.o:
+	cd /home/oceane/Epitech/TEK3/hackaton/Game_Jam/EPIJAM_1 && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/ray_client.dir/build.make src/client/CMakeFiles/ray_client.dir/src/CountdownTimer.cpp.o
+.PHONY : src/CountdownTimer.cpp.o
+
+src/CountdownTimer.i: src/CountdownTimer.cpp.i
+.PHONY : src/CountdownTimer.i
+
+# target to preprocess a source file
+src/CountdownTimer.cpp.i:
+	cd /home/oceane/Epitech/TEK3/hackaton/Game_Jam/EPIJAM_1 && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/ray_client.dir/build.make src/client/CMakeFiles/ray_client.dir/src/CountdownTimer.cpp.i
+.PHONY : src/CountdownTimer.cpp.i
+
+src/CountdownTimer.s: src/CountdownTimer.cpp.s
+.PHONY : src/CountdownTimer.s
+
+# target to generate assembly for a file
+src/CountdownTimer.cpp.s:
+	cd /home/oceane/Epitech/TEK3/hackaton/Game_Jam/EPIJAM_1 && $(MAKE) $(MAKESILENT) -f src/client/CMakeFiles/ray_client.dir/build.make src/client/CMakeFiles/ray_client.dir/src/CountdownTimer.cpp.s
+.PHONY : src/CountdownTimer.cpp.s
+
 src/GameEngine.o: src/GameEngine.cpp.o
 .PHONY : src/GameEngine.o
 
@@ -334,6 +358,9 @@ help:
 	@echo "... src/Core.o"
 	@echo "... src/Core.i"
 	@echo "... src/Core.s"
+	@echo "... src/CountdownTimer.o"
+	@echo "... src/CountdownTimer.i"
+	@echo "... src/CountdownTimer.s"
 	@echo "... src/GameEngine.o"
 	@echo "... src/GameEngine.i"
 	@echo "... src/GameEngine.s"

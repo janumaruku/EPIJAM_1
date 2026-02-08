@@ -61,6 +61,12 @@ void TcpClient::handle_read(std::shared_ptr<std::array<char, 1024>> buffer,
     }
 }
 
+void TcpClient::stop()
+{
+    asio::error_code ec;
+    socket.close(ec);
+}
+
 // int main(int, char** av)
 // {
 //     try {
