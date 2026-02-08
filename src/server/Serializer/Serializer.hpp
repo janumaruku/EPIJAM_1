@@ -23,9 +23,9 @@ public:
         buffer.insert(buffer.end(), ptr, ptr + sizeof(T));
     }
 
-    static std::vector<std::uint8_t> serializeMap(const Map& map);
-
-    static std::vector<std::uint8_t> framePacket(const std::vector<std::uint8_t>& payload);
+    // static std::vector<std::uint8_t> serializeMap(const Map& map);
+    //
+    // static std::vector<std::uint8_t> framePacket(const std::vector<std::uint8_t>& payload);
 };
 
 #endif //BISTROMATIC_SERIALIZER_HPP

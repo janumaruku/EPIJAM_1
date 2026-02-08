@@ -23,7 +23,7 @@ AnimatedSprite::AnimatedSprite(const std::string& texturePath, int frameWidth, i
 
 AnimatedSprite::~AnimatedSprite()
 {
-  
+    cleanup();
 }
 
 void AnimatedSprite::cleanup()

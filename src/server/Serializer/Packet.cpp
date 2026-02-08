@@ -10,3 +10,8 @@
 Packet::Packet(const std::vector<std::uint8_t>& buffer) : _buffer{buffer}
 {
 }
+
+std::vector<std::uint8_t> Packet::getBuffer() const noexcept
+{
+    return _buffer;
+}

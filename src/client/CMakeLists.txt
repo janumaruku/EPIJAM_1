@@ -6,6 +6,12 @@ add_executable(ray_client
         src/animated_sprite.cpp
         src/Parallax_Manager.cpp
         src/TcpClient.cpp
+        src/Core.cpp
+        src/GameScene.cpp
+        include/GameScene.hpp
+        include/IScene.hpp
+        src/GameEngine.cpp
+        include/GameEngine.hpp
 )
 
 set_target_properties(ray_client PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})

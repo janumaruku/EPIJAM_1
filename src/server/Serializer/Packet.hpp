@@ -33,9 +33,12 @@ public:
     template <typename T>
     void write(const T& value)
     {
-        std::memcpy(&_buffer[_offset], &value, sizeof(T));
-        _offset += sizeof(T);
+        const size_t start = _buffer.size();
+        _buffer.resize(start + sizeof(T));
+        std::memcpy(_buffer.data() + start, &value, sizeof(T));
     }
+
+    std::vector<std::uint8_t> getBuffer() const noexcept;
 
 private:
     std::vector<std::uint8_t> _buffer;

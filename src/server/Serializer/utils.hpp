@@ -11,7 +11,7 @@
 #include <cstdint>
 
 enum class PacketType : std::uint8_t {
-    MapInit = 1
+    CONNECTION_REQUEST = 1,
 };
 
 #endif //BISTROMATIC_UTILS_HPP

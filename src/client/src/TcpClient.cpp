@@ -11,7 +11,7 @@ TcpClient::TcpClient(asio::io_context& io, const std::string& host, short port) 
     socket(io)
 {
     tcp::resolver resolver(io);
-    auto endpoints = resolver.resolve(host, std::to_string(port));
+    const auto endpoints = resolver.resolve(host, std::to_string(port));
 
     asio::async_connect(socket, endpoints,
         [this](const asio::error_code& error, const tcp::endpoint&)
@@ -43,7 +43,9 @@ void TcpClient::start_read()
 
     socket.async_read_some(asio::buffer(*buffer),
         [this, buffer](const asio::error_code& error, std::size_t bytes)
-        { handle_read(buffer, error, bytes); });
+        {
+            handle_read(buffer, error, bytes);
+        });
 }
 
 void TcpClient::handle_read(std::shared_ptr<std::array<char, 1024>> buffer,

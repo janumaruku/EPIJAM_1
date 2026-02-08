@@ -11,12 +11,14 @@
 #include <vector>
 #include <asio/ip/tcp.hpp>
 
+#include "../Serializer/Packet.hpp"
+
 class ClientSession : public std::enable_shared_from_this<ClientSession> {
 public:
     explicit ClientSession(asio::ip::tcp::socket socket);
 
     void start();
-    void send(const std::vector<uint8_t>& data);
+    void send(const Packet& data);
 
 private:
     void do_read();

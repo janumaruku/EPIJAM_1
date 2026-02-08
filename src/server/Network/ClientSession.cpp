@@ -17,23 +17,22 @@ void ClientSession::start()
     do_read();
 }
 
-void ClientSession::send(const std::vector<uint8_t>& data)
+void ClientSession::send(const Packet& data)
 {
-    _writeBuffer = data;
+    _writeBuffer = data.getBuffer();
     do_write();
 }
 
 void ClientSession::do_read()
 {
-    auto self = shared_from_this();
+    // auto self = shared_from_this();
 
     _socket.async_read_some(
         asio::buffer(_readBuffer),
-        [this, self](const asio::error_code& ec, const std::size_t bytes) {
+        [this](const asio::error_code& ec, const std::size_t bytes) {
             if (!ec) {
                 std::cout << "Received " << bytes << " bytes\n";
 
-                // Echo back for now (placeholder)
                 _writeBuffer.assign(_readBuffer.begin(),
                     _readBuffer.begin() + bytes);
 
@@ -47,12 +46,12 @@ void ClientSession::do_read()
 
 void ClientSession::do_write()
 {
-    auto self = shared_from_this();
+    // auto self = shared_from_this();
 
     asio::async_write(
         _socket,
         asio::buffer(_writeBuffer),
-        [this, self](const asio::error_code& ec, std::size_t) {
+        [this](const asio::error_code& ec, std::size_t) {
             if (!ec) {
                 do_read();
             } else {
