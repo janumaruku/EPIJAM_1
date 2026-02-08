@@ -18,7 +18,7 @@ public:
     GameEngine();
     ~GameEngine();
 
-    static void handlePacket(Packet& packet);
+    void handlePacket(Packet& packet);
 
     void run();
 
