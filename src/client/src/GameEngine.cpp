@@ -11,10 +11,10 @@
 
 GameEngine::GameEngine()
 {
-    InitWindow(1200, 700, "Zappy Client");
+    InitWindow(1980, 1034, "game");
     SetTargetFPS(60);
 
-    currentScene = new GameScene(1200, 700);
+    currentScene = new GameScene(1980, 1034);
 }
 
 GameEngine::~GameEngine()
@@ -27,6 +27,9 @@ void GameEngine::run()
 {
     while (!WindowShouldClose()) {
         float dt = GetFrameTime();
+        if (currentScene->isGameOver() && IsKeyPressed(KEY_R)) {
+            currentScene->restart();
+        }
         update(dt);
 
         BeginDrawing();

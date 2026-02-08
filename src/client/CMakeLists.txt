@@ -7,6 +7,7 @@ add_executable(ray_client
         src/Parallax_Manager.cpp
         src/TcpClient.cpp
         src/Core.cpp
+        src/map_manage.cpp
         src/GameScene.cpp
         include/GameScene.hpp
         include/IScene.hpp
