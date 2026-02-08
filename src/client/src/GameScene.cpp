@@ -11,7 +11,7 @@ GameScene::GameScene(int width, int height)
     : parallax(width, height),
       map("maps/map.txt", 32.0f),
       player("assets/individual_sheets/player_sheet.png", 102, 102),
-      playerPos{200.f, 850.f},
+      playerPos{200.f, 870.f},
       playerVelocityY(0.0f),
       facingRight(true),
       isOnGround(true),
@@ -27,7 +27,7 @@ GameScene::GameScene(int width, int height)
       totalDistance(0.0f),
       screenWidth(width),
       screenHeight(height),
-      groundLevel(800.0f)
+      groundLevel(870.0f)
 {
     parallax.loadLayers();
     map.loadSprites("assets/Tomato/tomato_sheet.png",  
@@ -191,10 +191,10 @@ void GameScene::drawGameOver()
 {
     DrawRectangle(0, 0, screenWidth, screenHeight, Fade(BLACK, 0.7f));
     
-    DrawText("GAME OVER U :(", screenWidth/2 + 500, screenHeight/2 - 100, 80, RED);
+    DrawText("GAME OVER U :(", screenWidth/2 - 200, screenHeight/2 - 100, 80, RED);
     
     DrawRectangle(screenWidth/2 - 250, screenHeight/2, 500, 200, Fade(BLACK, 0.9f));
-    DrawText(TextFormat("Coins Collected: %d", coinsCollected), 
+    DrawText(TextFormat("tomatoes Collected: %d", coinsCollected), 
              screenWidth/2 - 150, screenHeight/2 + 30, 30, YELLOW);
     DrawText(TextFormat("Distance: %.0fm", totalDistance / 32.0f), 
              screenWidth/2 - 150, screenHeight/2 + 80, 30, GREEN);
