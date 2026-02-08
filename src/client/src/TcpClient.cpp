@@ -5,7 +5,7 @@
 ** TcpClient
 */
 
-#include "TcpClient.hpp"
+#include "../include/TcpClient.hpp"
 
 TcpClient::TcpClient(asio::io_context& io, const std::string& host, short port) :
     socket(io)
@@ -59,15 +59,15 @@ void TcpClient::handle_read(std::shared_ptr<std::array<char, 1024>> buffer,
     }
 }
 
-int main(int, char** av)
-{
-    try {
-        int port = atoi(av[1]);
-        asio::io_context io;
-        TcpClient client(io, "127.0.0.1", port);
-
-        io.run();
-    } catch (std::exception& e) {
-        std::cerr << "Exception: " << e.what() << "\n";
-    }
-}
+// int main(int, char** av)
+// {
+//     try {
+//         int port = atoi(av[1]);
+//         asio::io_context io;
+//         TcpClient client(io, "127.0.0.1", port);
+//
+//         io.run();
+//     } catch (std::exception& e) {
+//         std::cerr << "Exception: " << e.what() << "\n";
+//     }
+// }

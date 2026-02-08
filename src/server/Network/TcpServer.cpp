@@ -8,8 +8,10 @@
 #include "TcpServer.hpp"
 #include <iostream>
 
-TcpServer::TcpServer(asio::io_context& io, const short port)
-    : _acceptor(io, tcp::endpoint(tcp::v4(), port))
+#include "Core.hpp"
+
+TcpServer::TcpServer(asio::io_context& io, const short port, Core& core)
+    : _acceptor(io, tcp::endpoint(tcp::v4(), port)), _core{core}
 {
     std::cout << "[SERVER] Listening on port " << port << std::endl;
     accept();
@@ -29,6 +31,7 @@ void TcpServer::accept()
 
                 const auto client = std::make_shared<ClientSession>(std::move(socket));
                 _clients.push_back(client);
+                _core.onClientConnected(client);
                 client->start();
             } else {
                 std::cerr << "[SERVER] Accept error: "

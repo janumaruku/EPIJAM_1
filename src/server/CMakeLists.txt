@@ -9,3 +9,7 @@ add_subdirectory(Network)
 add_subdirectory(Physics)
 
 add_subdirectory(Player)
+
+add_subdirectory(PlayerEvent)
+
+add_subdirectory(Serializer)

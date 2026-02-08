@@ -11,13 +11,17 @@
 #include <asio.hpp>
 #include <memory>
 
-#include "Map.hpp"
-#include "TcpServer.hpp"
+#include "../Map/Map.hpp"
+#include "../Network/TcpServer.hpp"
 
 class Core {
 public:
     explicit Core(short port);
     void run();
+
+    void onClientConnected(const std::shared_ptr<ClientSession>& client);
+
+    Map getMap() const noexcept;
 
 private:
     asio::io_context _io;

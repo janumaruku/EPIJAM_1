@@ -8,8 +8,8 @@
 #ifndef PARALLAXLAYER_HPP
 #define PARALLAXLAYER_HPP
 
-#include "raylib.h"
 #include <string>
+#include "raylib.h"
 
 struct ParallaxLayer {
     Texture2D texture;
@@ -18,4 +18,4 @@ struct ParallaxLayer {
     std::string name;
 };
 
-#endif 
+#endif

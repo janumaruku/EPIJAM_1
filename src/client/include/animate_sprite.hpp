@@ -9,9 +9,9 @@
 #ifndef ANIMATEDSPRITE_HPP
 #define ANIMATEDSPRITE_HPP
 
-#include "raylib.h"
 #include <map>
 #include <string>
+#include "raylib.h"
 
 
 struct Animation {
