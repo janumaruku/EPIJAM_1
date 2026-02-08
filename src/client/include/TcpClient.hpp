@@ -12,6 +12,8 @@
 #include <iostream>
 #include <memory>
 
+#include "Packet.hpp"
+
 using asio::ip::tcp;
 
 class TcpClient {
@@ -24,8 +26,11 @@ private:
     void start_read();
     void handle_read(std::shared_ptr<std::array<char, 1024>> buffer,
         const asio::error_code& error, std::size_t bytes);
+    void processPackets();
+    void handlePacket(Packet& pkt);
 
     tcp::socket socket;
+    std::vector<uint8_t> _recvBuffer;
 };
 
 #endif

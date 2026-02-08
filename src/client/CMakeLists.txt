@@ -11,10 +11,10 @@ add_executable(ray_client
         include/GameScene.hpp
         include/IScene.hpp
         src/GameEngine.cpp
-        include/GameEngine.hpp
+#        include/GameEngine.hpp
 )
 
 set_target_properties(ray_client PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
 
-target_link_libraries(ray_client raylib GL m pthread dl rt X11)
+target_link_libraries(ray_client raylib GL m pthread dl rt X11 serializer)
 

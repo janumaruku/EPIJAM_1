@@ -8,7 +8,7 @@
 #include "../include/animate_sprite.hpp"
 #include "../include/Parallax_Manager.hpp"
 #include "../include/TcpClient.hpp"
-#include "../include/Core.hpp"
+#include "../include/ClientApp.hpp"
 
 // #include "raylib.h"
 

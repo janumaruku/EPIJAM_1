@@ -1,8 +1,11 @@
-//
-// Created by kotti on 08/02/2026.
-//
+/*
+** EPITECH PROJECT, 2026
+** epijam_1
+** File description:
+** Core
+*/
 
-#include "Core.hpp"
+#include "ClientApp.hpp"
 
 ClientApp::ClientApp(int port)
     : network(io, "127.0.0.1", port)

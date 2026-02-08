@@ -17,10 +17,20 @@ void ClientSession::start()
     do_read();
 }
 
-void ClientSession::send(const Packet& data)
+void ClientSession::send(const Packet& pkt)
 {
-    _writeBuffer = data.getBuffer();
-    do_write();
+    std::vector<uint8_t> framed;
+
+    const uint16_t size = static_cast<uint16_t>(pkt.getBuffer().size());
+    framed.resize(sizeof(size) + size);
+
+    std::memcpy(framed.data(), &size, sizeof(size));
+    std::memcpy(framed.data() + sizeof(size),
+                pkt.getBuffer().data(),
+                size);
+
+    asio::async_write(_socket, asio::buffer(framed),
+        [](auto, auto) {});
 }
 
 void ClientSession::do_read()

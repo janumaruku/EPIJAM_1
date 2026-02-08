@@ -4,6 +4,14 @@ project(epijam_1 VERSION 1.0
 
 set(CMAKE_CXX_STANDARD 20)
 
-#include_directories(src/app src/Command src/Operands src/Parser)
+include_directories(src/server/Core
+        src/server/GamePlay
+        src/server/Map
+        src/server/Network
+        src/server/Physics
+        src/server/Player
+        src/server/PlayerEvent
+        src/server/Serializer
+        #[[src/client/include]])
 
 add_subdirectory(src)

@@ -5,12 +5,11 @@
 ** Core
 */
 
-#include "TcpClient.hpp"
-
 #ifndef EPIJAM_1_CORE_HPP
 #define EPIJAM_1_CORE_HPP
 
 #include "GameEngine.hpp"
+#include "TcpClient.hpp"
 
 class ClientApp {
 public:
