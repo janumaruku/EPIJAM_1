@@ -13,6 +13,8 @@ add_executable(ray_client
         include/IScene.hpp
         src/GameEngine.cpp
         include/GameEngine.hpp
+        src/CountdownTimer.cpp
+        src/CountdownTimer.hpp
 )
 
 set_target_properties(ray_client PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
