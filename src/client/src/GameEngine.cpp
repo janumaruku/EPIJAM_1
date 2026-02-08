@@ -6,8 +6,13 @@
 */
 
 #include "GameEngine.hpp"
+
+#include <iostream>
+
 #include "GameScene.hpp"
+#include "PacketQueue.hpp"
 #include "raylib.h"
+#include "../../server/Serializer/utils.hpp"
 
 GameEngine::GameEngine()
 {
@@ -23,10 +28,42 @@ GameEngine::~GameEngine()
     CloseWindow();
 }
 
+void GameEngine::handlePacket(Packet& packet)
+{
+    const auto type = packet.read<PacketType>();
+
+    if (type != PacketType::CONNECTION_REQUEST) {
+        std::cerr << "Unexpected packet type\n";
+        return;
+    }
+
+    const auto count = packet.read<uint8_t>();
+
+    std::cout << "Received map with " << static_cast<int>(count) << " entities\n";
+
+    for (uint8_t i = 0; i < count; ++i) {
+        const auto entityType = packet.read<uint8_t>();
+        const auto x = packet.read<float>();
+        const auto y = packet.read<float>();
+
+        std::cout << "Entity "
+                  << (int)entityType
+                  << " at (" << x << ", " << y << ")\n";
+
+        // Here: spawn sprite / entity in your game world
+    }
+}
+
 void GameEngine::run()
 {
     while (!WindowShouldClose()) {
         float dt = GetFrameTime();
+
+        auto packets = PacketQueue::getInstance().popAll();
+        for (auto &packet : packets) {
+            GameEngine::handlePacket(*packet.get());
+        }
+
         update(dt);
 
         BeginDrawing();

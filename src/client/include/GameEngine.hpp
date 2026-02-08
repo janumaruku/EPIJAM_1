@@ -8,12 +8,17 @@
 #ifndef EPIJAM_1_GAMEENGINE_HPP
 #define EPIJAM_1_GAMEENGINE_HPP
 
+#include <memory>
+
 #include "IScene.hpp"
+#include "Packet.hpp"
 
 class GameEngine {
 public:
     GameEngine();
     ~GameEngine();
+
+    static void handlePacket(Packet& packet);
 
     void run();
 

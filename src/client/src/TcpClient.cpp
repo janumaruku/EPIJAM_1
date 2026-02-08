@@ -7,6 +7,7 @@
 
 #include "../include/TcpClient.hpp"
 
+#include "PacketQueue.hpp"
 #include "../../server/Serializer/Packet.hpp"
 #include "../../server/Serializer/utils.hpp"
 
@@ -102,46 +103,32 @@ void TcpClient::processPackets()
         );
 
         Packet pkt(payload);
-        handlePacket(pkt);
+        PacketQueue::getInstance().push(std::move(std::make_unique<Packet>(pkt)));
     }
 }
 
-void TcpClient::handlePacket(Packet& pkt)
-{
-    const auto type = pkt.read<PacketType>();
-
-    if (type != PacketType::CONNECTION_REQUEST) {
-        std::cerr << "Unexpected packet type\n";
-        return;
-    }
-
-    const uint8_t count = pkt.read<uint8_t>();
-
-    std::cout << "Received map with " << (int)count << " entities\n";
-
-    for (uint8_t i = 0; i < count; ++i) {
-        uint8_t entityType = pkt.read<uint8_t>();
-        float x = pkt.read<float>();
-        float y = pkt.read<float>();
-
-        std::cout << "Entity "
-                  << (int)entityType
-                  << " at (" << x << ", " << y << ")\n";
-
-        // Here: spawn sprite / entity in your game world
-    }
-}
-
-
-// int main(int, char** av)
+// void TcpClient::handlePacket(Packet& pkt)
 // {
-//     try {
-//         int port = atoi(av[1]);
-//         asio::io_context io;
-//         TcpClient client(io, "127.0.0.1", port);
+//     const auto type = pkt.read<PacketType>();
 //
-//         io.run();
-//     } catch (std::exception& e) {
-//         std::cerr << "Exception: " << e.what() << "\n";
+//     if (type != PacketType::CONNECTION_REQUEST) {
+//         std::cerr << "Unexpected packet type\n";
+//         return;
+//     }
+//
+//     const uint8_t count = pkt.read<uint8_t>();
+//
+//     std::cout << "Received map with " << (int)count << " entities\n";
+//
+//     for (uint8_t i = 0; i < count; ++i) {
+//         uint8_t entityType = pkt.read<uint8_t>();
+//         float x = pkt.read<float>();
+//         float y = pkt.read<float>();
+//
+//         std::cout << "Entity "
+//                   << (int)entityType
+//                   << " at (" << x << ", " << y << ")\n";
+//
+//         // Here: spawn sprite / entity in your game world
 //     }
 // }
